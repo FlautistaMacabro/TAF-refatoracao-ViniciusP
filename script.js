@@ -19,22 +19,78 @@ let abs = 35;
 
 */
 
+// ------- Funções de Validação dos dados ------- //
+
+function isDistanceValid(distance){
+  if(distance >= 24000)
+    return true;
+  return false;
+}
+
+// Para os parâmetros MASCULINOS
+
+function isMascTimeValid(time){
+  if(time < 720)
+    return true;
+  return false;
+}
+
+function isMascPushUpsValid(pushUps){
+  if(pushUps >= 30)
+    return true;
+  return false;
+}
+
+function isMascAbsValid(abs){
+  if(abs >= 35)
+    return true;
+  return false;
+}
+
+// Para os parâmetros FEMININOS
+
+function isFemnTimeValid(time){
+  if(time < 840)
+    return true;
+  return false;
+}
+
+function isFemnPushUpsValid(pushUps){
+  if(pushUps >= 20)
+    return true;
+  return false;
+}
+
+function isFemnAbsValid(abs){
+  if(abs >= 30)
+    return true;
+  return false;
+}
+
+// ------- Função de Impressão em caixa alta ------- //
+
+function showMessage(message){
+  console.log(message.toUpperCase());
+}
+
+// ------- Função de Teste ------- //
+
 function testTAF(distance, time, gender, pushUps, abs) {
   passed = false;
 
   //Sua logica deve ser inserida aqui:
 
   // Verificando se a distância mínima foi alcançada pela pessoa
-  if(distance >= 24000){
+  if(isDistanceValid(distance)){
     // Verificando se o gênero é masculino
     if(gender === "male"){
       // Verificando se as exigências mínimas para aqueles do gênero masculino foram compridas
-      if(time < 720 && pushUps >= 30 && abs >= 35)
+      if(isMascTimeValid(time) && isMascPushUpsValid(pushUps) && isMascAbsValid(abs))
         passed = true;
     // Verificando se o gênero é feminino
     }else if(gender === "female"){
       // Verificando se as exigências mínimas para aqueles do gênero feminino foram compridas
-      if(time < 840 && pushUps >= 20 && abs >= 30)
+      if(isFemnTimeValid(time) && isFemnPushUpsValid(pushUps) && isFemnAbsValid(abs))
         passed = true;
     }
   }
@@ -46,10 +102,8 @@ function testTAF(distance, time, gender, pushUps, abs) {
 //para executar o script no terminal digite: node ./script.js
 //para executar os testes no terminal digite: node --test ./test_cases.js
 
-console.log(
-  "Candidato passou no teste?: \nresposta: ",
-
-  testTAF(distance, time, gender, pushUps, abs)
+showMessage(
+  `Candidato passou no teste?: \nresposta: ${testTAF(distance, time, gender, pushUps, abs)}`
 );
 
 module.exports = testTAF;
